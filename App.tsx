@@ -1,10 +1,13 @@
 import AppScreen from "./components/AppScreen";
-import { BinderiProvider } from "./components/BinderiProvider";
+import { BinderiProvider } from "./components/Binderi/BinderiProvider";
+import { GredeProvider } from "./components/Grede/GredeProvider";
 
 export default function App() {
   return (
     <BinderiProvider>
-      <AppScreen />
+      <GredeProvider>
+        <AppScreen />
+      </GredeProvider>
     </BinderiProvider>
   );
 }

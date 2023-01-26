@@ -1,5 +1,7 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 interface Props {
   title: string;
@@ -20,6 +22,21 @@ export const CalculateButton = ({ title, onPress, reset = false }: Props) => {
         styles.button,
       ]}
     >
+      {reset ? (
+        <Feather
+          name="refresh-ccw"
+          size={15}
+          color="black"
+          style={styles.icon}
+        />
+      ) : (
+        <SimpleLineIcons
+          name="calculator"
+          size={15}
+          color="white"
+          style={styles.icon}
+        />
+      )}
       <Text style={{ color: reset ? "#333333" : "#ffffff" }}>{title}</Text>
     </Pressable>
   );
@@ -31,5 +48,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
+  },
+  icon: {
+    marginRight: 10,
   },
 });

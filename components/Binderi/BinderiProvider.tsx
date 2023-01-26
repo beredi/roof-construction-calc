@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
-import { OtherValue, BinderiContext } from "../common/ValuesContext";
+import { OtherValue, BinderiContext } from "../../common/BinderiContext";
+import { roundToTwo } from "../common/helperFunctions";
 
 interface Props {
   children: React.ReactNode;
@@ -13,10 +14,6 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
   const [calcSpace, setCalcSpace] = useState<number>(0);
   const [hypotenuse, setHypotenuse] = useState<number>(0);
   const [otherValues, setOtherValues] = useState<OtherValue>({});
-
-  const roundToTwo = (num: number) => {
-    return Math.round(num * 100 + Number.EPSILON) / 100;
-  };
 
   const calcHypotenuse = () => {
     const value = roundToTwo(
@@ -86,7 +83,8 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
 
     return values;
   };
-  const calculate = () => {
+
+  const calculate = async () => {
     const hypotenuseValue = calcHypotenuse();
     const countValue = calcCount(hypotenuseValue);
     const xSpaceValue = calcSpaceValue(hypotenuseValue, countValue);
