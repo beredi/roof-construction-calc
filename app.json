@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
+        "foregroundImage": "./assets/adaptive-icon",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.xarocx.roofconstructioncalc"
