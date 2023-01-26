@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
-import { OtherValue, ValuesContext } from "../common/ValuesContext";
+import { OtherValue, BinderiContext } from "../common/ValuesContext";
 
 interface Props {
   children: React.ReactNode;
 }
-export const ValuesProvider: FC<Props> = ({ children }) => {
+export const BinderiProvider: FC<Props> = ({ children }) => {
   const [height, setHeight] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
   const [space, setSpace] = useState<number>(0);
@@ -123,7 +123,7 @@ export const ValuesProvider: FC<Props> = ({ children }) => {
   };
 
   return (
-    <ValuesContext.Provider
+    <BinderiContext.Provider
       value={{
         height,
         width,
@@ -141,6 +141,6 @@ export const ValuesProvider: FC<Props> = ({ children }) => {
       }}
     >
       {children}
-    </ValuesContext.Provider>
+    </BinderiContext.Provider>
   );
 };

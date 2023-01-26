@@ -20,7 +20,7 @@ interface ValuesContextProps {
   resetValues: () => void;
   //setHypotenuse: (height: number) => void;
 }
-export const ValuesContext = createContext(<ValuesContextProps>{
+export const BinderiContext = createContext(<ValuesContextProps>{
   height: 0,
   width: 0,
   hypotenuse: 0,

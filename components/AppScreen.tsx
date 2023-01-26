@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { CanvasComponent } from "./CanvasComponent";
-import { Button, StyleSheet, View, Text, SafeAreaView } from "react-native";
-import { CalculatingComponent } from "./CalculatingComponent";
+import { StyleSheet, View, Text, SafeAreaView } from "react-native";
+import { CalculatingBinderiComponent } from "./CalculatingBinderiComponent";
+import { Navigation } from "./common/Navigation";
 
+export type SelectedCalculator = "binderi" | "grede";
 export default function AppScreen() {
-  const [showCanvas, setShowCanvas] = useState<boolean>(false);
-  return showCanvas ? (
-    <CanvasComponent onClickHide={() => setShowCanvas(false)} />
-  ) : (
+  const [selectedCalculator, setSelectedCalculator] =
+    useState<SelectedCalculator>("binderi");
+  return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topBar}>
         <Text style={styles.topBarText}>Kalkukator konstrukcije krova</Text>
       </View>
+      <Navigation
+        selectedCalculator={selectedCalculator}
+        setSelectedCalculator={setSelectedCalculator}
+      />
       <View style={styles.body}>
-        <CalculatingComponent showCanvas={() => setShowCanvas(true)} />
+        {selectedCalculator === "binderi" && <CalculatingBinderiComponent />}
       </View>
     </SafeAreaView>
   );
@@ -41,5 +45,30 @@ const styles = StyleSheet.create({
     fontSize: 17,
     paddingVertical: 10,
     textTransform: "uppercase",
+  },
+  navButtons: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  navButton: {
+    width: "50%",
+    paddingVertical: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  activeButton: {
+    backgroundColor: "#ffffff",
+    borderLeftColor: "#bdff9c",
+    borderLeftWidth: 3,
+    borderRightColor: "#bdff9c",
+    borderRightWidth: 3,
+    borderTopColor: "#bdff9c",
+    borderTopWidth: 3,
+  },
+  inactiveButton: {
+    backgroundColor: "#090c1c",
+  },
+  inactiveButtonText: {
+    color: "#ffffff",
   },
 });

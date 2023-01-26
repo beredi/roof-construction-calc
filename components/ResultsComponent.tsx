@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import { useValuesContext } from "../hooks/useValuesContext";
+import { useBinderiContext } from "../hooks/useValuesContext";
 
 export const ResultsComponent = () => {
   const { hypotenuse, calcSpace, otherValues, thinPipes, boldPipes } =
-    useValuesContext();
+    useBinderiContext();
   return (
     <View style={styles.container}>
       <Text>Rezultati:</Text>

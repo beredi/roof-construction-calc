@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ValuesContext } from "../common/ValuesContext";
+import { BinderiContext } from "../common/ValuesContext";
 
-export const useValuesContext = () => {
-  return useContext(ValuesContext);
+export const useBinderiContext = () => {
+  return useContext(BinderiContext);
 };

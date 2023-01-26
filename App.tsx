@@ -1,25 +1,10 @@
-import { StyleSheet } from "react-native";
-import { ValuesProvider } from "./components/ValuesProvider";
 import AppScreen from "./components/AppScreen";
+import { BinderiProvider } from "./components/BinderiProvider";
 
 export default function App() {
   return (
-    <ValuesProvider>
+    <BinderiProvider>
       <AppScreen />
-    </ValuesProvider>
+    </BinderiProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    paddingTop: 30,
-  },
-  canvas: {
-    flex: 1,
-  },
-  body: {
-    paddingHorizontal: 10,
-  },
-});
