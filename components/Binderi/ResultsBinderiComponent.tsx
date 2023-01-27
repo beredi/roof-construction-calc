@@ -3,8 +3,17 @@ import { useBinderiContext } from "../../hooks/useValuesContext";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const ResultsBinderiComponent = () => {
-  const { hypotenuse, calcSpace, otherValues, thinPipes, boldPipes } =
-    useBinderiContext();
+  const {
+    hypotenuse,
+    calcSpace,
+    otherValues,
+    thinPipes,
+    boldPipes,
+    lengthBoughtPipe,
+    countBoldPipesToBuy,
+    countThinPipesToBuy,
+    countBinders,
+  } = useBinderiContext();
   return (
     <View style={styles.container}>
       <View style={[styles.row, { alignItems: "center" }]}>
@@ -51,15 +60,50 @@ export const ResultsBinderiComponent = () => {
         </View>
       )}
 
-      <View
-        style={[styles.row, { justifyContent: "flex-start", marginTop: 20 }]}
-      >
+      <View style={{ marginTop: 20 }}>
+        <Text style={{ textDecorationLine: "underline" }}>Za 1 binder:</Text>
+      </View>
+      <View style={styles.row}>
         <Text>Ukupno dužina cevi za osnovu: </Text>
         <Text style={styles.bold}>{boldPipes} cm</Text>
       </View>
       <View style={[styles.row, { justifyContent: "flex-start" }]}>
         <Text>Ukupno dužina cevi za ispune: </Text>
         <Text style={styles.bold}>{thinPipes} cm</Text>
+      </View>
+      <View style={styles.row}>
+        <Text>Broj cevi za osnovu od {lengthBoughtPipe}cm: </Text>
+        <Text style={styles.bold}>{countBoldPipesToBuy} komada</Text>
+      </View>
+      <View style={styles.row}>
+        <Text>Broj cevi za ispune od {lengthBoughtPipe}cm: </Text>
+        <Text style={styles.bold}>{countThinPipesToBuy} komada</Text>
+      </View>
+
+      <View style={{ marginTop: 20 }}>
+        <Text style={{ textDecorationLine: "underline" }}>
+          Za {countBinders} bindera:
+        </Text>
+      </View>
+      <View style={styles.row}>
+        <Text>Ukupno dužina cevi za osnovu za {countBinders} bindera: </Text>
+        <Text style={styles.bold}>{boldPipes * countBinders} cm</Text>
+      </View>
+      <View style={[styles.row, { justifyContent: "flex-start" }]}>
+        <Text>Ukupno dužina cevi za ispune za {countBinders} bindera: </Text>
+        <Text style={styles.bold}>{thinPipes * countBinders} cm</Text>
+      </View>
+      <View style={styles.row}>
+        <Text>Broj cevi za osnovu od {lengthBoughtPipe}cm: </Text>
+        <Text style={styles.bold}>
+          {Math.ceil((boldPipes * countBinders) / lengthBoughtPipe)} komada
+        </Text>
+      </View>
+      <View style={styles.row}>
+        <Text>Broj cevi za ispune od {lengthBoughtPipe}cm: </Text>
+        <Text style={styles.bold}>
+          {Math.ceil((thinPipes * countBinders) / lengthBoughtPipe)} komada
+        </Text>
       </View>
     </View>
   );

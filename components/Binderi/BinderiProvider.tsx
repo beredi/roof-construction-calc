@@ -14,10 +14,15 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
   const [calcSpace, setCalcSpace] = useState<number>(0);
   const [hypotenuse, setHypotenuse] = useState<number>(0);
   const [otherValues, setOtherValues] = useState<OtherValue>({});
+  const [podignutoZa, setPodignutoZa] = useState<number>(0);
+  const [lengthBoughtPipe, setLengthBoughtPipe] = useState<number>(0);
+  const [countBoldPipesToBuy, setCountBoldPipesToBuy] = useState<number>(0);
+  const [countThinPipesToBuy, setCountThinPipesToBuy] = useState<number>(0);
+  const [countBinders, setCountBinders] = useState<number>(1);
 
-  const calcHypotenuse = () => {
+  const calcHypotenuse = (actualHeight: number) => {
     const value = roundToTwo(
-      Math.sqrt(Math.pow(height, 2) + Math.pow(width / 2, 2))
+      Math.sqrt(Math.pow(actualHeight, 2) + Math.pow(width / 2, 2))
     );
     setHypotenuse(value);
 
@@ -69,9 +74,9 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
     for (let i = 1; i <= countValue; i++) {
       let aKey = "a" + i;
       let bKey = "b" + i;
-      const a: number = Math.sqrt(
-        Math.pow(xSpaceValue * i, 2) - Math.pow(ySpaceValue * i, 2)
-      );
+      const a: number =
+        podignutoZa +
+        Math.sqrt(Math.pow(xSpaceValue * i, 2) - Math.pow(ySpaceValue * i, 2));
       const b: number =
         i === countValue
           ? Math.sqrt(Math.pow(ySpaceValue + z, 2) + Math.pow(a, 2))
@@ -84,8 +89,31 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
     return values;
   };
 
+  const calcActualHeight = () => {
+    return height - podignutoZa;
+  };
+
+  const calcBoldPipes = (hypotenuseValue: number) => {
+    const value = roundToTwo(2 * podignutoZa + width + 2 * hypotenuseValue);
+    setBoldPipes(value);
+    setCountBoldPipesToBuy(Math.ceil(value / lengthBoughtPipe));
+  };
+
+  const calcThinPipes = (otherValuesValue: OtherValue) => {
+    const value =
+      roundToTwo(
+        otherValuesValue
+          ? 2 * Object.values(otherValuesValue).reduce((a, b) => a + b, 0)
+          : 0
+      ) + height;
+    setThinPipes(value);
+
+    setCountThinPipesToBuy(Math.ceil(value / lengthBoughtPipe));
+  };
+
   const calculate = async () => {
-    const hypotenuseValue = calcHypotenuse();
+    const actualHeight = calcActualHeight();
+    const hypotenuseValue = calcHypotenuse(actualHeight);
     const countValue = calcCount(hypotenuseValue);
     const xSpaceValue = calcSpaceValue(hypotenuseValue, countValue);
     const alphaAngle = calcAlphaAngle(hypotenuseValue);
@@ -99,14 +127,8 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
       countValue
     );
 
-    setBoldPipes(roundToTwo(height + width + 2 * hypotenuseValue));
-    setThinPipes(
-      roundToTwo(
-        otherValuesValue
-          ? 2 * Object.values(otherValuesValue).reduce((a, b) => a + b, 0)
-          : 0
-      )
-    );
+    calcBoldPipes(hypotenuseValue);
+    calcThinPipes(otherValuesValue);
   };
 
   const resetValues = () => {
@@ -118,6 +140,11 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
     setThinPipes(0);
     setBoldPipes(0);
     setCalcSpace(0);
+    setPodignutoZa(0);
+    setLengthBoughtPipe(0);
+    setCountThinPipesToBuy(0);
+    setCountBoldPipesToBuy(0);
+    setCountBinders(1);
   };
 
   return (
@@ -129,6 +156,14 @@ export const BinderiProvider: FC<Props> = ({ children }) => {
         setHeight,
         setWidth,
         otherValues,
+        podignutoZa,
+        setPodignutoZa,
+        lengthBoughtPipe,
+        setLengthBoughtPipe,
+        countThinPipesToBuy,
+        countBoldPipesToBuy,
+        countBinders,
+        setCountBinders,
         calculate,
         space,
         setSpace,

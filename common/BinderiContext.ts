@@ -13,6 +13,14 @@ interface ValuesContextProps {
   boldPipes: number;
   thinPipes: number;
   otherValues?: OtherValue;
+  podignutoZa: number;
+  setPodignutoZa: (value: number) => void;
+  lengthBoughtPipe: number;
+  setLengthBoughtPipe: (value: number) => void;
+  countBoldPipesToBuy: number;
+  countThinPipesToBuy: number;
+  countBinders: number;
+  setCountBinders: (value: number) => void;
   setHeight: (height: number) => void;
   setWidth: (width: number) => void;
   calculate: () => void;
@@ -28,11 +36,17 @@ export const BinderiContext = createContext(<ValuesContextProps>{
   calcSpace: 0,
   boldPipes: 0,
   thinPipes: 0,
+  podignutoZa: 0,
+  lengthBoughtPipe: 0,
+  countBoldPipesToBuy: 0,
+  countThinPipesToBuy: 0,
+  countBinders: 1,
+  setCountBinders: () => {},
+  setLengthBoughtPipe: () => {},
+  setPodignutoZa: () => {},
   setHeight: () => {},
   setWidth: () => {},
   calculate: () => {},
   setSpace: () => {},
   resetValues: () => {},
-
-  //setHypotenuse: () => {},
 });

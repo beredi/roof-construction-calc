@@ -17,13 +17,19 @@ export const CalculatingBinderiComponent = () => {
     setSpace,
     calculate,
     resetValues,
+    podignutoZa,
+    setPodignutoZa,
+    lengthBoughtPipe,
+    setLengthBoughtPipe,
+    countBinders,
+    setCountBinders,
   } = useBinderiContext();
 
   const requireValue = require("../../assets/input-binderi-values.jpg");
 
   return (
     <KeyboardAvoidContainer>
-      <Header title={"parametri krova"} imageSrc={requireValue} />
+      <Header title={"parametri bindera"} imageSrc={requireValue} />
       <View style={styles.row}>
         <InputCell value={width} setValue={setWidth} label={"Širina [cm]"} />
         <InputCell value={height} setValue={setHeight} label={"Visina [cm]"} />
@@ -31,6 +37,25 @@ export const CalculatingBinderiComponent = () => {
           value={space}
           setValue={setSpace}
           label={"Željeni razmak [cm]"}
+        />
+      </View>
+      <View style={styles.row}>
+        <InputCell
+          value={podignutoZa}
+          setValue={setPodignutoZa}
+          label={"Podignuto za [cm]"}
+        />
+        <InputCell
+          value={lengthBoughtPipe}
+          setValue={setLengthBoughtPipe}
+          label={"Dužina kupljene cevi [cm]"}
+        />
+      </View>
+      <View style={styles.row}>
+        <InputCell
+          value={countBinders}
+          setValue={setCountBinders}
+          label={"Binderi [komada]"}
         />
       </View>
       <CalculateButton title={"Izračunaj"} onPress={calculate} />
