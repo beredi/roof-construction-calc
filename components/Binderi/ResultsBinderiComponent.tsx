@@ -68,6 +68,7 @@ export const ResultsBinderiComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingBottom: 20,
   },
   bold: { fontWeight: "bold" },
   row: { flexDirection: "row", justifyContent: "flex-start" },

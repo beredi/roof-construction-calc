@@ -9,14 +9,53 @@ import { ResultsGredeComponent } from "./ResultsGredeComponent";
 
 export const CalculatingGredeComponent = () => {
   const requireValue = require("../../assets/input-grede-values.jpg");
-  const { length, width, setWidth, setLength, calculate, reset } =
-    useGredeContext();
+  const {
+    length,
+    width,
+    setWidth,
+    setLength,
+    calculate,
+    reset,
+    isponaWidth,
+    setIsponaWidth,
+    spaceBetIspona,
+    setSpaceBetIspona,
+    lengthBoughtPipe,
+    setLengthBoughtPipe,
+  } = useGredeContext();
   return (
     <KeyboardAvoidContainer>
       <Header title={"parametri grede"} imageSrc={requireValue} />
       <View style={styles.row}>
-        <InputCell value={length} setValue={setLength} label={"Dužina [cm]"} />
-        <InputCell value={width} setValue={setWidth} label={"Širina [cm]"} />
+        <InputCell
+          value={length}
+          setValue={setLength}
+          label={"Dužina grede [cm]"}
+        />
+        <InputCell
+          value={width}
+          setValue={setWidth}
+          label={"Širina grede [cm]"}
+        />
+      </View>
+      <View style={styles.row}>
+        <InputCell
+          value={isponaWidth}
+          setValue={setIsponaWidth}
+          label={"Debljina ispune [cm]"}
+        />
+        <InputCell
+          value={spaceBetIspona}
+          setValue={setSpaceBetIspona}
+          label={"Razmak između ispuna [cm]"}
+        />
+      </View>
+      <View style={styles.row}>
+        <InputCell
+          value={lengthBoughtPipe}
+          setValue={setLengthBoughtPipe}
+          label={"Dužina kupljene cevi [cm]"}
+        />
       </View>
       <CalculateButton title={"Izračunaj"} onPress={calculate} />
       <CalculateButton title={"Resetuj"} onPress={reset} reset={true} />

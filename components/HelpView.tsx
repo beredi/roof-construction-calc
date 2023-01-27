@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Image, Pressable, StyleSheet, Text } from "react-native";
 
 interface Props {
   closeHelp: () => void;
@@ -7,6 +7,7 @@ interface Props {
 export const HelpView = ({ closeHelp }: Props) => {
   return (
     <Pressable style={styles.container} onPress={closeHelp}>
+      <Image source={require("../assets/icon.png")} style={styles.icon} />
       <Text style={styles.bold}>Kalkulator konstrukcije krova</Text>
       <Text>Developed by Jaroslav Beredi</Text>
       <Text>2023</Text>
@@ -34,5 +35,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#9f9f9f",
     padding: 20,
+  },
+  icon: {
+    width: 200,
+    height: 200,
   },
 });
